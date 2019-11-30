@@ -1,4 +1,4 @@
---Criação das tabelas
+	--Criação das tabelas
 -----------------------------------------------------------------------------------------------------------------------
 CREATE TABLE tb_agendamento (
   id_agendamento SERIAL NOT NULL, 
@@ -78,40 +78,31 @@ COMMENT ON COLUMN tb_manutencao.id_manutencao IS 'Id da manutenção.';
 COMMENT ON COLUMN tb_manutencao.dt_inicio IS 'Data inicio da manutenção.';
 COMMENT ON COLUMN tb_manutencao.dt_fim IS 'Data de finalização da manutenção do objeto.';
 -----------------------------------------------------------------------------------------------------------------------
-CREATE TABLE tb_midia (
-  id_midia SERIAL NOT NULL, 
-  bl_midia bytea, 
-  PRIMARY KEY (id_midia));
------------------------------------------------------------------------------------------------------------------------
-COMMENT ON TABLE tb_midia IS 'Tabela responsavel pelo cadastro de arquivos de midia relacionados aos objetos como fotos, videos e documentos';
-COMMENT ON COLUMN tb_midia.id_midia IS 'Id midia';
-COMMENT ON COLUMN tb_midia.bl_midia IS 'Midia do objeto';
------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE tb_objeto (
   id_objeto      SERIAL NOT NULL, 
   tx_nomeobj     varchar(50), 
-  tx_status      int4, -----------------------ALTERAR PARA USAR O STATUS COMO UMA TABELA COM ID E DESCRICAO
-  id_instituicao int4 NOT NULL, 
-  id_categoria   int4 NOT NULL, 
-  id_colecao     int4 NOT NULL, 
-  id_midia       int4 NOT NULL, 
-  id_manutencao  int4, -----------TIRAR O NOT NULL
+  id_status      int4, --FOREIGN KEY
+  id_instituicao int4 NOT NULL, --FOREIGN KEY
+  id_categoria   int4 NOT NULL, --FOREIGN KEY
+  id_colecao     int4 , --FOREIGN KEY
+  id_midia       int4 NOT NULL, --FOREIGN KEY
+  id_manutencao  int4, --FOREIGN KEY
+  id_tipo 	 int4, --FOREIG KEY
   PRIMARY KEY (id_objeto));
 -----------------------------------------------------------------------------------------------------------------------
 COMMENT ON TABLE tb_objeto IS 'Tabela responsavel pelo cadastro dos objetos presentes no museu.';
 COMMENT ON COLUMN tb_objeto.id_objeto IS 'Id do objeto.';
 COMMENT ON COLUMN tb_objeto.tx_nomeobj IS 'Nome do objeto.';
-COMMENT ON COLUMN tb_objeto.tx_status IS 'Status do objeto que pode ser (em exibição, manutenção e descarte).';
 -----------------------------------------------------------------------------------------------------------------------
 CREATE TABLE tb_pessoa (
   id_pessoa    SERIAL NOT NULL, 
   tx_nome      varchar(100), 
-  nr_idade     int4, 
+  nr_idade     int4,
   tx_cargo     varchar(50) , 
   tx_telefone  varchar(20) , 
-  id_login    int4,
+  id_cidade int4, --FOREIGN KEY
+  id_login    int4, --FOREIGN KEY
   PRIMARY KEY (id_pessoa));
- 
 ----------------------------------------------------------------------------------------------------------------------- 
 COMMENT ON TABLE tb_pessoa IS 'Tabela responsavel pela criacao da entidade generica pessoa';
 COMMENT ON COLUMN tb_pessoa.id_pessoa IS 'Id da pessoa';
@@ -119,7 +110,6 @@ COMMENT ON COLUMN tb_pessoa.tx_nome IS 'Nome da pessoa';
 COMMENT ON COLUMN tb_pessoa.nr_idade IS 'Idade da pessoa';
 COMMENT ON COLUMN tb_pessoa.tx_cargo IS 'Cargo do funcionario (somente utilizada como parametro quando necessario)';
 COMMENT ON COLUMN tb_pessoa.tx_telefone IS 'Telefone da pessoa';
-COMMENT ON COLUMN tb_pessoa.fl_superuser IS 'Flag que possibilita a manutenção/edicao (true) ou visualização (false)';
 -----------------------------------------------------------------------------------------------------------------------
 CREATE TABLE tb_tipo (
   id_tipo SERIAL NOT NULL, 
@@ -139,7 +129,7 @@ COMMENT ON TABLE tb_tipo IS 'Tabela responsavel pelo cadastro de status de um ob
 COMMENT ON COLUMN tb_tipo.id_tipo IS 'Id do status';
 COMMENT ON COLUMN tb_tipo.tx_tipo IS 'Nome do status';
 -----------------------------------------------------------------------------------------------------------------------
-CREATE TABLE tb_tipocategoria (
+CREATE TABLE tb_categoria (
   id_tipo      int4 NOT NULL, 
   id_categoria int4 NOT NULL, 
   PRIMARY KEY (id_tipo, 
@@ -160,16 +150,46 @@ COMMENT ON COLUMN tb_usuario.tx_senha IS 'Senha do usuario';
 COMMENT ON COLUMN tb_usuario.tx_email IS 'Email da usuario';
 COMMENT ON COLUMN tb_usuario.fl_superUser IS 'Flag que valida as permissões do usuario no sistema';
 -----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_status (
+  id_status SERIAL NOT NULL, 
+  tx_status varchar(30), 
+  PRIMARY KEY (id_status));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_status IS 'Tabela responsavel pelo cadastro de status do Objeto.';
+COMMENT ON COLUMN tb_status.id_status  IS 'Id do status';
+COMMENT ON COLUMN tb_status.tx_status   IS 'Status do objeto';
+
+-----------------------------------------------------------------------------------------------------------------------
 
 
-ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_objetoManutencao FOREIGN KEY (id_manutencao) REFERENCES tb_manutencao (id_manutencao);
-ALTER TABLE tb_agendamento ADD CONSTRAINT FKtb_agendamentoPessoa FOREIGN KEY (id_pessoa) REFERENCES tb_pessoa (id_pessoa);
-ALTER TABLE tb_pessoa ADD CONSTRAINT FKtb_pessoaCidade FOREIGN KEY (id_cidade) REFERENCES tb_cidade (id_cidade);
-ALTER TABLE tb_cidade ADD CONSTRAINT FKtb_cidadeEstado FOREIGN KEY (id_estado) REFERENCES tb_estado (id_estado);
-ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_midiaObjeto FOREIGN KEY (id_midia) REFERENCES tb_midia (id_midia);
-ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_objetoColecao FOREIGN KEY (id_colecao) REFERENCES tb_colecao (id_colecao);
-ALTER TABLE tb_tipocategoria ADD CONSTRAINT FKtb_tipocat565412 FOREIGN KEY (id_tipo) REFERENCES tb_tipo (id_tipo);
-ALTER TABLE tb_tipocategoria ADD CONSTRAINT FKtb_tipoCategoria FOREIGN KEY (id_categoria) REFERENCES tb_categoria (id_categoria);
-ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_categoriaObjeto FOREIGN KEY (id_categoria) REFERENCES tb_categoria (id_categoria);
-ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_instituicaoObjeto FOREIGN KEY (id_instituicao) REFERENCES tb_instituicao (id_instituicao);
+
+------------------------------------------CHAVES ESTRANGEIRAS----------------------------------------------------------
+
+-----------------------------------------------TB_PESSOA---------------------------------------------------------------
+ALTER TABLE tb_pessoa ADD CONSTRAINT cidadepessoa_FK FOREIG KEY (id_cidade) references tb_cidade(id_cidade);
+-----------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------TB_OBJETO---------------------------------------------------------------
+
+ALTER TABLE tb_objeto ADD CONSTRAINT statusobjeto_fk FOREIG KEY (id_status) REFERENCES tb_status (id_status);
+
+ALTER TABLE public.tb_objeto ADD CONSTRAINT objetocategoria_fk FOREIGN KEY (id_categoria) REFERENCES tb_categoria(id_categoria);
+
+ALTER TABLE public.tb_objeto ADD CONSTRAINT instituicaoobjeto_fk FOREIGN KEY (id_instituicao) REFERENCES tb_instituicao(id_instituicao);
+
+ALTER TABLE public.tb_objeto ADD CONSTRAINT objetocolecao_fk FOREIGN KEY (id_colecao) REFERENCES tb_colecao(id_colecao);
+
+ALTER TABLE public.tb_objeto ADD CONSTRAINT objetomanutencao_fk FOREIGN KEY (id_manutencao) REFERENCES tb_manutencao(id_manutencao);
+
+ALTER TABLE public.tb_objeto ADD CONSTRAINT objetotipo_fk FOREIGN KEY (id_tipo) REFERENCES tb_tipo(id_tipo);
+-----------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------TB_PESSOA---------------------------------------------------------------
+
+ALTER TABLE public.tb_pessoa ADD CONSTRAINT cidadepessoa_fk FOREIGN KEY (id_cidade) REFERENCES tb_cidade(id_cidade)
+-----------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------TB_ESTADO---------------------------------------------------------------
+alter table tb_cidade add constraint estadocidade_fk foreign key (id_estado) references tb_estado(id_estado)
+
 -----------------------------------------------------------------------------------------------------------------------
