@@ -1,0 +1,41 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 471
+  Width = 853
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    VendorHome = 
+      'C:\Users\User\Desktop\Projeto final - Museu\Otilia\Win32\Debug\d' +
+      'll'
+    Left = 32
+    Top = 16
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=postgres'
+      'Password=nene7852'
+      'DriverID=PG')
+    Connected = True
+    LoginPrompt = False
+    Left = 120
+    Top = 24
+  end
+  object FDQUsuario: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT COUNT(*) FROM tb_usuario')
+    Left = 224
+    Top = 16
+    object FDQUsuariocount: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'count'
+      Origin = 'count'
+      ReadOnly = True
+    end
+  end
+  object DSUsuario: TDataSource
+    DataSet = FDQUsuario
+    Left = 296
+    Top = 16
+  end
+end

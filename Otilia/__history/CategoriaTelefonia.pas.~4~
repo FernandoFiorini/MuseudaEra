@@ -1,0 +1,31 @@
+unit CategoriaTelefonia;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TfrmTelefonia = class(TForm)
+    Image1: TImage;
+    groupBoxPesquisa: TGroupBox;
+    Edit1: TEdit;
+    Image2: TImage;
+    SpeedButton1: TSpeedButton;
+    Image3: TImage;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTelefonia: TfrmTelefonia;
+
+implementation
+
+{$R *.dfm}
+
+end.

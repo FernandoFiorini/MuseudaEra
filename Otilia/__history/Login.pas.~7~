@@ -1,0 +1,90 @@
+unit Login;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Imaging.jpeg, Vcl.ExtCtrls, Vcl.Imaging.pngimage;
+
+type
+  TfrmLogin = class(TForm)
+    btnLogin: TSpeedButton;
+    btnCadastro: TSpeedButton;
+    btnEntrar: TSpeedButton;
+    btnVoltar: TSpeedButton;
+    LogoUnoesc: TImage;
+    lblLogin: TLabel;
+    lblSenha: TLabel;
+    edtSenha: TEdit;
+    edtLogin: TEdit;
+    lblNomeMuseu: TLabel;
+    Fundo: TImage;
+    procedure btnLoginClick(Sender: TObject);
+    procedure btnEntrarClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnCadastroClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+
+implementation
+
+{$R *.dfm}
+
+uses Cadastro;
+
+procedure TfrmLogin.btnCadastroClick(Sender: TObject);
+begin
+     frmCadastro := TfrmCadastro.Create(self);
+     frmCadastro.ShowModal;
+end;
+
+procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+begin
+  if(edtLogin.Text = '') or (edtSenha.Text = '')then
+  begin
+    ShowMessage('Informe todos os dados');
+    edtLogin.SetFocus;
+  end
+  else
+  begin
+    ShowMessage('Login realizado com sucesso');
+  end;
+
+
+end;
+
+procedure TfrmLogin.btnVoltarClick(Sender: TObject);
+begin
+   edtLogin.Visible:=false;
+   edtSenha.Visible:=false;
+   edtSenha.Clear;
+   edtLogin.Clear;
+   lblLogin.Visible:=false;
+   lblSenha.Visible:=false;
+   btnVoltar.Visible:=false;
+   btnEntrar.Visible:=false;
+   btnCadastro.Visible:=true;
+   btnLogin.Visible:=true;
+end;
+
+procedure TfrmLogin.btnLoginClick(Sender: TObject);
+begin
+  edtLogin.Visible:=true;
+  edtSenha.Visible:=true;
+  lblLogin.Visible:=true;
+  lblSenha.Visible:=true;
+  btnEntrar.Visible:=true;
+  btnVoltar.Visible:=true;
+  btnCadastro.Visible:=false;
+  btnLogin.Visible:=false;
+
+end;
+
+end.

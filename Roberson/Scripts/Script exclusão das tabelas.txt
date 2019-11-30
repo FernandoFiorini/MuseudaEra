@@ -1,0 +1,27 @@
+--Exclusão das tabelas
+----------------------------------------------------------------------
+ALTER TABLE tb_agendamento DROP CONSTRAINT FKtb_agendam25055;
+ALTER TABLE tb_objeto DROP CONSTRAINT FKtb_objeto577454;
+ALTER TABLE tb_agendamento DROP CONSTRAINT FKtb_agendam285621;
+ALTER TABLE tb_pessoa DROP CONSTRAINT FKtb_pessoa524382;
+ALTER TABLE tb_cidade DROP CONSTRAINT FKtb_cidade514630;
+ALTER TABLE tb_objeto DROP CONSTRAINT FKtb_objeto162809;
+ALTER TABLE tb_objeto DROP CONSTRAINT FKtb_objeto536522;
+ALTER TABLE tb_tipocategoria DROP CONSTRAINT FKtb_tipocat565412;
+ALTER TABLE tb_tipocategoria DROP CONSTRAINT FKtb_tipocat226946;
+ALTER TABLE tb_objeto DROP CONSTRAINT FKtb_objeto975016;
+ALTER TABLE tb_objeto DROP CONSTRAINT FKtb_objeto968437;
+DROP TABLE IF EXISTS tb_agendamento CASCADE;
+DROP TABLE IF EXISTS tb_categoria CASCADE;
+DROP TABLE IF EXISTS tb_cidade CASCADE;
+DROP TABLE IF EXISTS tb_colecao CASCADE;
+DROP TABLE IF EXISTS tb_estado CASCADE;
+DROP TABLE IF EXISTS tb_instituicao CASCADE;
+DROP TABLE IF EXISTS tb_manutencao CASCADE;
+DROP TABLE IF EXISTS tb_midia CASCADE;
+DROP TABLE IF EXISTS tb_objeto CASCADE;
+DROP TABLE IF EXISTS tb_pessoa CASCADE;
+DROP TABLE IF EXISTS tb_tipo CASCADE;
+DROP TABLE IF EXISTS tb_tipocategoria CASCADE;
+DROP TABLE IF EXISTS tb_usuario CASCADE;
+----------------------------------------------------------------------

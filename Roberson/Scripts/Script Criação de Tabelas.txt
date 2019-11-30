@@ -1,0 +1,175 @@
+--Criação das tabelas
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_agendamento (
+  id_agendamento SERIAL NOT NULL, 
+  dt_visita      date, 
+  hr_visita      time, 
+  qt_pessoas     int4, 
+  id_pessoa      int4 NOT NULL, 
+  id_instituicao int4 NOT NULL, 
+  PRIMARY KEY (id_agendamento));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_agendamento IS 'Tabela responsavel pelo cadastro de um agendamento para visitação no museu.';
+COMMENT ON COLUMN tb_agendamento.id_agendamento IS 'Id do agendamento.';
+COMMENT ON COLUMN tb_agendamento.dt_visita IS 'Data da visita.';
+COMMENT ON COLUMN tb_agendamento.hr_visita IS 'Hora da visita';
+COMMENT ON COLUMN tb_agendamento.qt_pessoas IS 'Quantidade de pessoas que vão participar da visitação.';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_categoria (
+  id_categoria SERIAL NOT NULL, 
+  tx_categoria varchar(30), 
+  PRIMARY KEY (id_categoria));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_categoria IS 'Tabela responsavel pelo cadastro de categorias referentes aos objetos.';
+COMMENT ON COLUMN tb_categoria.id_categoria IS 'Id da categoria.';
+COMMENT ON COLUMN tb_categoria.tx_categoria IS 'Nome da categoria';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_cidade (
+  id_cidade  SERIAL NOT NULL, 
+  tx_nomecid varchar(50), 
+  id_estado  int4 NOT NULL, 
+  PRIMARY KEY (id_cidade));
+----------------------------------------------------------------------------------------------------------------------- 
+COMMENT ON TABLE tb_cidade IS 'Tabela responsavel pelo cadastro de cidades.';
+COMMENT ON COLUMN tb_cidade.id_cidade IS 'Id da cidade.';
+COMMENT ON COLUMN tb_cidade.tx_nomecid IS 'Nome da cidade.';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_colecao (
+  id_colecao SERIAL NOT NULL, 
+  tx_nomecol varchar(30), 
+  dt_colecao date, 
+  PRIMARY KEY (id_colecao));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_colecao IS 'Tabela responsavel pela criacao da coleção de determinados objetos, por exemplo linha nintendo.';
+COMMENT ON COLUMN tb_colecao.id_colecao IS 'Id da coleção.';
+COMMENT ON COLUMN tb_colecao.tx_nomecol IS 'Nome da coleção';
+COMMENT ON COLUMN tb_colecao.dt_colecao IS 'Data da coleção.';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_estado (
+  id_estado SERIAL NOT NULL, 
+  tx_estado varchar(30), 
+  tx_sigla  varchar(2), 
+  PRIMARY KEY (id_estado));
+----------------------------------------------------------------------------------------------------------------------- 
+COMMENT ON COLUMN tb_estado.id_estado IS 'Id do estado.';
+COMMENT ON COLUMN tb_estado.tx_estado IS 'Nome do estado.';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_instituicao (
+  id_instituicao SERIAL NOT NULL, 
+  tx_nomeinst    varchar(50), 
+  tx_cnpj        varchar(20), 
+  tx_telefone    varchar(30), 
+  PRIMARY KEY (id_instituicao));
+----------------------------------------------------------------------------------------------------------------------- 
+COMMENT ON TABLE tb_instituicao IS 'Tabela responsavel pelo cadastro de informações sobre a instituição regente do museu.';
+COMMENT ON COLUMN tb_instituicao.id_instituicao IS 'Id da instituição.';
+COMMENT ON COLUMN tb_instituicao.tx_nomeinst IS 'Nome da instituição.';
+COMMENT ON COLUMN tb_instituicao.tx_cnpj IS 'CNPJ da instituição.';
+COMMENT ON COLUMN tb_instituicao.tx_telefone IS 'Telefone da instituição.';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_manutencao (
+  id_manutencao SERIAL NOT NULL, 
+  dt_inicio     date, 
+  dt_fim        date, 
+  PRIMARY KEY (id_manutencao));
+----------------------------------------------------------------------------------------------------------------------- 
+COMMENT ON TABLE tb_manutencao IS 'Tabela responsavel pelo cadastro de manutenção de um objeto.';
+COMMENT ON COLUMN tb_manutencao.id_manutencao IS 'Id da manutenção.';
+COMMENT ON COLUMN tb_manutencao.dt_inicio IS 'Data inicio da manutenção.';
+COMMENT ON COLUMN tb_manutencao.dt_fim IS 'Data de finalização da manutenção do objeto.';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_midia (
+  id_midia SERIAL NOT NULL, 
+  bl_midia bytea, 
+  PRIMARY KEY (id_midia));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_midia IS 'Tabela responsavel pelo cadastro de arquivos de midia relacionados aos objetos como fotos, videos e documentos';
+COMMENT ON COLUMN tb_midia.id_midia IS 'Id midia';
+COMMENT ON COLUMN tb_midia.bl_midia IS 'Midia do objeto';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_objeto (
+  id_objeto      SERIAL NOT NULL, 
+  tx_nomeobj     varchar(50), 
+  tx_status      int4, -----------------------ALTERAR PARA USAR O STATUS COMO UMA TABELA COM ID E DESCRICAO
+  id_instituicao int4 NOT NULL, 
+  id_categoria   int4 NOT NULL, 
+  id_colecao     int4 NOT NULL, 
+  id_midia       int4 NOT NULL, 
+  id_manutencao  int4, -----------TIRAR O NOT NULL
+  PRIMARY KEY (id_objeto));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_objeto IS 'Tabela responsavel pelo cadastro dos objetos presentes no museu.';
+COMMENT ON COLUMN tb_objeto.id_objeto IS 'Id do objeto.';
+COMMENT ON COLUMN tb_objeto.tx_nomeobj IS 'Nome do objeto.';
+COMMENT ON COLUMN tb_objeto.tx_status IS 'Status do objeto que pode ser (em exibição, manutenção e descarte).';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_pessoa (
+  id_pessoa    SERIAL NOT NULL, 
+  tx_nome      varchar(100), 
+  nr_idade     int4, 
+  tx_cargo     varchar(50) , 
+  tx_telefone  varchar(20) , 
+  id_login    int4,
+  PRIMARY KEY (id_pessoa));
+ 
+----------------------------------------------------------------------------------------------------------------------- 
+COMMENT ON TABLE tb_pessoa IS 'Tabela responsavel pela criacao da entidade generica pessoa';
+COMMENT ON COLUMN tb_pessoa.id_pessoa IS 'Id da pessoa';
+COMMENT ON COLUMN tb_pessoa.tx_nome IS 'Nome da pessoa';
+COMMENT ON COLUMN tb_pessoa.nr_idade IS 'Idade da pessoa';
+COMMENT ON COLUMN tb_pessoa.tx_cargo IS 'Cargo do funcionario (somente utilizada como parametro quando necessario)';
+COMMENT ON COLUMN tb_pessoa.tx_telefone IS 'Telefone da pessoa';
+COMMENT ON COLUMN tb_pessoa.fl_superuser IS 'Flag que possibilita a manutenção/edicao (true) ou visualização (false)';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_tipo (
+  id_tipo SERIAL NOT NULL, 
+  tx_tipo varchar(30), 
+  PRIMARY KEY (id_tipo));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_tipo IS 'Tabela responsavel pelo cadastro do tipo do objeto.';
+COMMENT ON COLUMN tb_tipo.id_tipo IS 'Id da coleção.';
+COMMENT ON COLUMN tb_tipo.tx_tipo IS 'Tipo do objeto';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_status (
+  id_status SERIAL NOT NULL, 
+  tx_nomestatus varchar(30), 
+  PRIMARY KEY (id_tipo));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_tipo IS 'Tabela responsavel pelo cadastro de status de um objeto';
+COMMENT ON COLUMN tb_tipo.id_tipo IS 'Id do status';
+COMMENT ON COLUMN tb_tipo.tx_tipo IS 'Nome do status';
+-----------------------------------------------------------------------------------------------------------------------
+CREATE TABLE tb_tipocategoria (
+  id_tipo      int4 NOT NULL, 
+  id_categoria int4 NOT NULL, 
+  PRIMARY KEY (id_tipo, 
+  id_categoria));
+----------------------------------------------------------------------------------------------------------------------- 
+ CREATE TABLE tb_usuario (
+  id_usuario SERIAL NOT NULL, 
+  tx_login   varchar(30) NOT NULL, 
+  tx_senha   varchar(30) NOT NULL,
+  tx_email     varchar(100) NOT NULL,
+  fl_superUser bool default false, 
+  PRIMARY KEY (id_usuario));
+-----------------------------------------------------------------------------------------------------------------------
+COMMENT ON TABLE tb_usuario IS 'Tabela responsavel pela criacao do usuario de login.';
+COMMENT ON COLUMN tb_usuario.id_usuario IS 'Id do usuario';
+COMMENT ON COLUMN tb_usuario.tx_login IS 'Login do usuario';
+COMMENT ON COLUMN tb_usuario.tx_senha IS 'Senha do usuario';
+COMMENT ON COLUMN tb_usuario.tx_email IS 'Email da usuario';
+COMMENT ON COLUMN tb_usuario.fl_superUser IS 'Flag que valida as permissões do usuario no sistema';
+-----------------------------------------------------------------------------------------------------------------------
+
+
+ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_objetoManutencao FOREIGN KEY (id_manutencao) REFERENCES tb_manutencao (id_manutencao);
+ALTER TABLE tb_agendamento ADD CONSTRAINT FKtb_agendamentoPessoa FOREIGN KEY (id_pessoa) REFERENCES tb_pessoa (id_pessoa);
+ALTER TABLE tb_pessoa ADD CONSTRAINT FKtb_pessoaCidade FOREIGN KEY (id_cidade) REFERENCES tb_cidade (id_cidade);
+ALTER TABLE tb_cidade ADD CONSTRAINT FKtb_cidadeEstado FOREIGN KEY (id_estado) REFERENCES tb_estado (id_estado);
+ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_midiaObjeto FOREIGN KEY (id_midia) REFERENCES tb_midia (id_midia);
+ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_objetoColecao FOREIGN KEY (id_colecao) REFERENCES tb_colecao (id_colecao);
+ALTER TABLE tb_tipocategoria ADD CONSTRAINT FKtb_tipocat565412 FOREIGN KEY (id_tipo) REFERENCES tb_tipo (id_tipo);
+ALTER TABLE tb_tipocategoria ADD CONSTRAINT FKtb_tipoCategoria FOREIGN KEY (id_categoria) REFERENCES tb_categoria (id_categoria);
+ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_categoriaObjeto FOREIGN KEY (id_categoria) REFERENCES tb_categoria (id_categoria);
+ALTER TABLE tb_objeto ADD CONSTRAINT FKtb_instituicaoObjeto FOREIGN KEY (id_instituicao) REFERENCES tb_instituicao (id_instituicao);
+-----------------------------------------------------------------------------------------------------------------------
