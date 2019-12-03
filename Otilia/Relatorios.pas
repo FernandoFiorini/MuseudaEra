@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.Buttons, Vcl.StdCtrls;
+  Vcl.Buttons, Vcl.StdCtrls, frxClass, frxDBSet;
 
 type
   TfrmRelatorios = class(TForm)
@@ -17,6 +17,10 @@ type
     Label2: TLabel;
     ImagemRelatorioFuncionarios: TImage;
     ImagemRelatorioObjetos: TImage;
+    frxFuncionarios: TfrxReport;
+    frxDBFuncionario: TfrxDBDataset;
+    frxObjetos: TfrxReport;
+    frxDBObjetos: TfrxDBDataset;
     procedure btnRelatoriosFuncionarioClick(Sender: TObject);
     procedure btnRelatorioObjetosClick(Sender: TObject);
   private
@@ -36,12 +40,12 @@ uses Modulo;
 
 procedure TfrmRelatorios.btnRelatorioObjetosClick(Sender: TObject);
 begin
-  //frxObjetos.ShowReport();
+  frxObjetos.ShowReport();
 end;
 
 procedure TfrmRelatorios.btnRelatoriosFuncionarioClick(Sender: TObject);
 begin
-  //frxFuncionarios.ShowReport()
+  frxFuncionarios.ShowReport()
 end;
 
 end.
