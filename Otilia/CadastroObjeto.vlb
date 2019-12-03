@@ -121,7 +121,7 @@ Coordinates=180,1,131,33
 Visible=False
 
 [BindSourceDB1]
-Coordinates=460,250,122,231
+Coordinates=460,250,122,249
 
 [BindingsList1]
 Coordinates=0,0,82,33
@@ -178,4 +178,16 @@ Coordinates=1002,544,192,87
 
 [btnModelo]
 Coordinates=101,1,66,33
+
+[DataModule1.DSRelatorioObjeto]
+Coordinates=251,239,172,33
+
+[DataModule1.DSRelatorioFuncionario]
+Coordinates=1136,285,199,33
+
+[DataModule1.FDRelatorioFuncionario]
+Coordinates=747,587,198,213
+
+[DataModule1.FDRelatorioObjeto]
+Coordinates=1136,377,172,51
 

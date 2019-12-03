@@ -11,13 +11,13 @@ type
   TfrmAudioVideo = class(TForm)
     Image1: TImage;
     CadastroInstituicao: TLabel;
-    groupBoxPesquisa: TGroupBox;
-    Image2: TImage;
-    SpeedButton1: TSpeedButton;
-    edtPesquisaBanco: TEdit;
     GridCima: TDBGrid;
+    btnNovo: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnNovoClick(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,23 +31,33 @@ implementation
 
 {$R *.dfm}
 
-uses Modulo;
+uses Modulo, CadastroObjeto;
+
+procedure TfrmAudioVideo.btnNovoClick(Sender: TObject);
+begin
+  frmCadastroObjeto:=TfrmCadastroObjeto.Create(self);
+  frmCadastroObjeto.ShowModal;
+end;
 
 procedure TfrmAudioVideo.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    DataModule1.FDQObjeto.Active:=false;
+   DataModule1.FDQListarAudioVideo.Active:=false;
    DataModule1.FDConnection1.Connected:=false;
 end;
 
 procedure TfrmAudioVideo.FormShow(Sender: TObject);
 begin
-   DataModule1.FDQObjeto.Active:=true;
+  DataModule1.FDQObjeto.Active:=true;
+   DataModule1.FDQListarAudioVideo.Active:=true;
     DataModule1.FDConnection1.Connected:=true;
 
+   DataModule1.FDQListarAudioVideo.Insert;
+end;
 
-    DataModule1.FDQObjeto.SQL.Clear;
-    DataModule1.FDQObjeto.SQL.Add('Select * from tb_objeto where id_categoria = 3');
-    DataModule1.FDQObjeto.Open;
+procedure TfrmAudioVideo.SpeedButton2Click(Sender: TObject);
+begin
+  DataModule1.FDQListarAudioVideo.Delete;
 end;
 
 end.

@@ -9819,14 +9819,6 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     TabOrder = 5
   end
   object OpenPictureDialog1: TOpenPictureDialog
-    Filter = 
-      'All (*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.ico;*.emf;*.wmf;*.tif;*.ti' +
-      'ff)|*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.ico;*.emf;*.wmf;*.tif;*.tif' +
-      'f|GIF Image (*.gif)|*.gif|Portable Network Graphics (*.png)|*.pn' +
-      'g|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*.jpeg|' +
-      'Bitmaps (*.bmp)|*.bmp|Icons (*.ico)|*.ico|Enhanced Metafiles (*.' +
-      'emf)|*.emf|Metafiles (*.wmf)|*.wmf|TIFF Images (*.tif)|*.tif|TIF' +
-      'F Images (*.tiff)|*.tiff'
     Left = 632
     Top = 16
   end
@@ -9851,7 +9843,7 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     object LinkFillControlToField1: TLinkFillControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
-      FieldName = 'id_instituicao'
+      FieldName = 'id_inst'
       Control = cmbInstituicao
       Track = True
       FillDataSource = BindSourceDB2
@@ -9865,7 +9857,7 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     object LinkFillControlToField2: TLinkFillControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
-      FieldName = 'id_categoria'
+      FieldName = 'id_cat'
       Control = cmbCategoria
       Track = True
       FillDataSource = BindSourceDB3
@@ -9886,7 +9878,7 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     object LinkFillControlToField3: TLinkFillControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
-      FieldName = 'id_status'
+      FieldName = 'id_stats'
       Control = cmbStatus
       Track = True
       FillDataSource = BindSourceDB4
@@ -9913,7 +9905,7 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     object LinkFillControlToField5: TLinkFillControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
-      FieldName = 'id_modelo'
+      FieldName = 'id_mod'
       Control = cmbModelo
       Track = True
       FillDataSource = BindSourceDB6

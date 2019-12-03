@@ -4,15 +4,16 @@ object DataModule1: TDataModule1
   Width = 853
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorHome = 
-      'C:\Users\LTI\Downloads\Projeto final - Museu2\Otilia\Win32\Debug' +
-      '\dll'
+      'C:\Users\User\Desktop\Projeto final - Museu FINAL\Projeto final ' +
+      '- Museu2\Otilia\Win32\Debug\dll'
     Left = 32
     Top = 16
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
+      'Database=postgres'
       'User_Name=postgres'
-      'Password=postgres'
+      'Password=nene7852'
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
@@ -95,26 +96,16 @@ object DataModule1: TDataModule1
     Left = 40
     Top = 128
     object FDQObjetoid_objeto: TIntegerField
+      DisplayLabel = 'Id'
       FieldName = 'id_objeto'
       Origin = 'id_objeto'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
     end
     object FDQObjetotx_nomeobj: TWideStringField
+      DisplayLabel = 'Nome'
       FieldName = 'tx_nomeobj'
       Origin = 'tx_nomeobj'
       Size = 50
-    end
-    object FDQObjetoid_instituicao: TIntegerField
-      FieldName = 'id_instituicao'
-      Origin = 'id_instituicao'
-    end
-    object FDQObjetoid_categoria: TIntegerField
-      FieldName = 'id_categoria'
-      Origin = 'id_categoria'
-    end
-    object FDQObjetoid_colecao: TIntegerField
-      FieldName = 'id_colecao'
-      Origin = 'id_colecao'
     end
     object FDQObjetoid_manutencao: TIntegerField
       FieldName = 'id_manutencao'
@@ -124,13 +115,25 @@ object DataModule1: TDataModule1
       FieldName = 'bl_midia'
       Origin = 'bl_midia'
     end
-    object FDQObjetoid_status: TIntegerField
-      FieldName = 'id_status'
-      Origin = 'id_status'
+    object FDQObjetoid_inst: TIntegerField
+      FieldName = 'id_inst'
+      Origin = 'id_inst'
     end
-    object FDQObjetoid_modelo: TIntegerField
-      FieldName = 'id_modelo'
-      Origin = 'id_modelo'
+    object FDQObjetoid_cat: TIntegerField
+      FieldName = 'id_cat'
+      Origin = 'id_cat'
+    end
+    object FDQObjetoid_col: TIntegerField
+      FieldName = 'id_col'
+      Origin = 'id_col'
+    end
+    object FDQObjetoid_stats: TIntegerField
+      FieldName = 'id_stats'
+      Origin = 'id_stats'
+    end
+    object FDQObjetoid_mod: TIntegerField
+      FieldName = 'id_mod'
+      Origin = 'id_mod'
     end
   end
   object DSObjeto: TDataSource
@@ -290,7 +293,6 @@ object DataModule1: TDataModule1
     Top = 136
   end
   object FDRelatorioFuncionario: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'select * from tb_pessoa'
@@ -355,7 +357,6 @@ object DataModule1: TDataModule1
     end
   end
   object FDRelatorioObjeto: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'select * from tb_objeto')
@@ -365,5 +366,285 @@ object DataModule1: TDataModule1
   object DSRelatorioObjeto: TDataSource
     Left = 632
     Top = 248
+  end
+  object FDQListarComputacao: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from tb_objeto '
+      'inner join tb_instituicao on id_inst = id_instituicao'
+      'inner join tb_categoria on id_cat = id_categoria'
+      'inner join tb_status on id_stats = id_status'
+      'inner join tb_modelo on id_mod = id_modelo'
+      'where id_categoria = 1')
+    Left = 664
+    Top = 344
+    object FDQListarComputacaoid_objeto: TIntegerField
+      FieldName = 'id_objeto'
+      Origin = 'id_objeto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      DisplayFormat = 'Id'
+    end
+    object FDQListarComputacaotx_nomeobj: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'tx_nomeobj'
+      Origin = 'tx_nomeobj'
+      Size = 50
+    end
+    object FDQListarComputacaotx_nomeinst: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome da institui'#231#227'o'
+      FieldName = 'tx_nomeinst'
+      Origin = 'tx_nomeinst'
+      Size = 50
+    end
+    object FDQListarComputacaotx_cnpj: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CNPJ da institui'#231#227'o'
+      FieldName = 'tx_cnpj'
+      Origin = 'tx_cnpj'
+    end
+    object FDQListarComputacaotx_telefone: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Telefone da institui'#231#227'o'
+      FieldName = 'tx_telefone'
+      Origin = 'tx_telefone'
+      Size = 30
+    end
+    object FDQListarComputacaotx_nomecategoria: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Categoria do objeto'
+      FieldName = 'tx_nomecategoria'
+      Origin = 'tx_nomecategoria'
+      Size = 30
+    end
+    object FDQListarComputacaotx_status: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status do objeto'
+      FieldName = 'tx_status'
+      Origin = 'tx_status'
+      Size = 30
+    end
+    object FDQListarComputacaotx_modelo: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Modelo do objeto'
+      FieldName = 'tx_modelo'
+      Origin = 'tx_modelo'
+      Size = 30
+    end
+  end
+  object DSListagemComputacao: TDataSource
+    DataSet = FDQListarComputacao
+    Left = 784
+    Top = 344
+  end
+  object FDQListarGames: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from tb_objeto '
+      'inner join tb_instituicao on id_inst = id_instituicao'
+      'inner join tb_categoria on id_cat = id_categoria'
+      'inner join tb_status on id_stats = id_status'
+      'inner join tb_modelo on id_mod = id_modelo'
+      'where id_categoria = 4')
+    Left = 472
+    Top = 376
+    object IntegerField1: TIntegerField
+      FieldName = 'id_objeto'
+      Origin = 'id_objeto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      DisplayFormat = 'Id'
+    end
+    object WideStringField1: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'tx_nomeobj'
+      Origin = 'tx_nomeobj'
+      Size = 50
+    end
+    object WideStringField2: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome da institui'#231#227'o'
+      FieldName = 'tx_nomeinst'
+      Origin = 'tx_nomeinst'
+      Size = 50
+    end
+    object WideStringField3: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CNPJ da institui'#231#227'o'
+      FieldName = 'tx_cnpj'
+      Origin = 'tx_cnpj'
+    end
+    object WideStringField4: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Telefone da institui'#231#227'o'
+      FieldName = 'tx_telefone'
+      Origin = 'tx_telefone'
+      Size = 30
+    end
+    object WideStringField5: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Categoria do objeto'
+      FieldName = 'tx_nomecategoria'
+      Origin = 'tx_nomecategoria'
+      Size = 30
+    end
+    object WideStringField6: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status do objeto'
+      FieldName = 'tx_status'
+      Origin = 'tx_status'
+      Size = 30
+    end
+    object WideStringField7: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Modelo do objeto'
+      FieldName = 'tx_modelo'
+      Origin = 'tx_modelo'
+      Size = 30
+    end
+  end
+  object FDQListarAudioVideo: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from tb_objeto '
+      'inner join tb_instituicao on id_inst = id_instituicao'
+      'inner join tb_categoria on id_cat = id_categoria'
+      'inner join tb_status on id_stats = id_status'
+      'inner join tb_modelo on id_mod = id_modelo'
+      'where id_categoria = 3')
+    Left = 280
+    Top = 400
+    object IntegerField2: TIntegerField
+      FieldName = 'id_objeto'
+      Origin = 'id_objeto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      DisplayFormat = 'Id'
+    end
+    object WideStringField8: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'tx_nomeobj'
+      Origin = 'tx_nomeobj'
+      Size = 50
+    end
+    object WideStringField9: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome da institui'#231#227'o'
+      FieldName = 'tx_nomeinst'
+      Origin = 'tx_nomeinst'
+      Size = 50
+    end
+    object WideStringField10: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CNPJ da institui'#231#227'o'
+      FieldName = 'tx_cnpj'
+      Origin = 'tx_cnpj'
+    end
+    object WideStringField11: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Telefone da institui'#231#227'o'
+      FieldName = 'tx_telefone'
+      Origin = 'tx_telefone'
+      Size = 30
+    end
+    object WideStringField12: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Categoria do objeto'
+      FieldName = 'tx_nomecategoria'
+      Origin = 'tx_nomecategoria'
+      Size = 30
+    end
+    object WideStringField13: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status do objeto'
+      FieldName = 'tx_status'
+      Origin = 'tx_status'
+      Size = 30
+    end
+    object WideStringField14: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Modelo do objeto'
+      FieldName = 'tx_modelo'
+      Origin = 'tx_modelo'
+      Size = 30
+    end
+  end
+  object DSListarGames: TDataSource
+    DataSet = FDQListarGames
+    Left = 544
+    Top = 376
+  end
+  object DSListarAudioVideo: TDataSource
+    DataSet = FDQListarAudioVideo
+    Left = 376
+    Top = 400
+  end
+  object FDQListarTelefonia: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from tb_objeto '
+      'inner join tb_instituicao on id_inst = id_instituicao'
+      'inner join tb_categoria on id_cat = id_categoria'
+      'inner join tb_status on id_stats = id_status'
+      'inner join tb_modelo on id_mod = id_modelo'
+      'where id_categoria = 2')
+    Left = 48
+    Top = 400
+    object IntegerField3: TIntegerField
+      FieldName = 'id_objeto'
+      Origin = 'id_objeto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      DisplayFormat = 'Id'
+    end
+    object WideStringField15: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'tx_nomeobj'
+      Origin = 'tx_nomeobj'
+      Size = 50
+    end
+    object WideStringField16: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Nome da institui'#231#227'o'
+      FieldName = 'tx_nomeinst'
+      Origin = 'tx_nomeinst'
+      Size = 50
+    end
+    object WideStringField17: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CNPJ da institui'#231#227'o'
+      FieldName = 'tx_cnpj'
+      Origin = 'tx_cnpj'
+    end
+    object WideStringField18: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Telefone da institui'#231#227'o'
+      FieldName = 'tx_telefone'
+      Origin = 'tx_telefone'
+      Size = 30
+    end
+    object WideStringField19: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Categoria do objeto'
+      FieldName = 'tx_nomecategoria'
+      Origin = 'tx_nomecategoria'
+      Size = 30
+    end
+    object WideStringField20: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Status do objeto'
+      FieldName = 'tx_status'
+      Origin = 'tx_status'
+      Size = 30
+    end
+    object WideStringField21: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Modelo do objeto'
+      FieldName = 'tx_modelo'
+      Origin = 'tx_modelo'
+      Size = 30
+    end
+  end
+  object DSListarTelefonia: TDataSource
+    DataSet = FDQListarTelefonia
+    Left = 136
+    Top = 400
   end
 end

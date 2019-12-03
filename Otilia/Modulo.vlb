@@ -52,17 +52,11 @@ Coordinates=631,105,153,33
 [FDQInstituicao]
 Coordinates=356,283,87,123
 
-[FDQObjetoid_colecao]
-Coordinates=342,534,121,33
-
 [FDQCadastrofl_superuser]
 Coordinates=631,157,142,33
 
 [DSInstituicao]
 Coordinates=490,125,80,33
-
-[FDQObjetoid_instituicao]
-Coordinates=631,209,135,33
 
 [DSManutencao]
 Coordinates=490,1,88,33
@@ -106,17 +100,11 @@ Coordinates=822,1,171,33
 [FDQStatustx_status]
 Coordinates=636,521,112,33
 
-[FDQObjetoid_status]
-Coordinates=636,573,113,33
-
 [FDQObjetobl_midia]
 Coordinates=517,605,110,33
 
 [DSCategoria]
 Coordinates=490,443,76,33
-
-[FDQObjetoid_categoria]
-Coordinates=378,605,129,33
 
 [FDQInstituicaotx_cnpj]
 Coordinates=249,605,123,33
@@ -143,6 +131,6 @@ Coordinates=822,261,114,33
 Coordinates=45,391,67,87
 
 []
-Coordinates=0,572,102,33
+Coordinates=636,573,113,33
 Visible=True
 
