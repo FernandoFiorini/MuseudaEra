@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.StdCtrls, Vcl.Buttons, Data.DB, System.Rtti, System.Bindings.Outputs,
+  Vcl.Bind.Editors, Data.Bind.EngExt, Vcl.Bind.DBEngExt, Data.Bind.Components,
+  Data.Bind.DBScope, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfrmTelefonia = class(TForm)
@@ -14,7 +16,14 @@ type
     edtPesquisaBanco: TEdit;
     Image2: TImage;
     SpeedButton1: TSpeedButton;
-    Image3: TImage;
+    ImagemCima: TImage;
+    ImagemBaixo: TImage;
+    GridCima: TDBGrid;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    CadastroInstituicao: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -27,5 +36,25 @@ var
 implementation
 
 {$R *.dfm}
+
+uses Modulo;
+
+procedure TfrmTelefonia.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+   DataModule1.FDQObjeto.Active:=false;
+   DataModule1.FDConnection1.Connected:=false;
+end;
+
+procedure TfrmTelefonia.FormShow(Sender: TObject);
+begin
+    DataModule1.FDQObjeto.Active:=true;
+    DataModule1.FDConnection1.Connected:=true;
+
+
+    DataModule1.FDQObjeto.SQL.Clear;
+    DataModule1.FDQObjeto.SQL.Add('Select * from tb_objeto where id_categoria = 2');
+    DataModule1.FDQObjeto.Open;
+
+end;
 
 end.

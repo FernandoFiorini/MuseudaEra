@@ -1,0 +1,62 @@
+unit CadastroModelo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
+  Vcl.ExtCtrls, Vcl.Buttons;
+
+type
+  TfrmCadastroModelo = class(TForm)
+    CadastroInstituicao: TLabel;
+    NomeInstituicao: TLabel;
+    edtModelo: TEdit;
+    Image1: TImage;
+    btnCadastrar: TButton;
+    btnVoltar: TSpeedButton;
+    procedure btnCadastrarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastroModelo: TfrmCadastroModelo;
+
+implementation
+
+{$R *.dfm}
+
+uses Modulo;
+
+procedure TfrmCadastroModelo.btnCadastrarClick(Sender: TObject);
+begin
+  .Close;
+
+end;
+
+procedure TfrmCadastroModelo.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  DataModule1.FDQModelo.Active:=false;
+  DataModule1.FDConnection1.Connected:=false;
+
+  DataModule1.FDQObjeto.Active:=True;
+  DataModule1.FDQInstituicao.Active:=True;
+  DataModule1.FDQCategoria.Active:=True;
+  DataModule1.FDQStatus.Active:=true;
+end;
+
+procedure TfrmCadastroModelo.FormShow(Sender: TObject);
+begin
+  DataModule1.FDQModelo.Active:=true;
+  DataModule1.FDConnection1.Connected:=true;
+
+  DataModule1.FDQModelo.Insert;
+end;
+
+end.

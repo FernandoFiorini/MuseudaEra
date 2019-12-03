@@ -4,15 +4,15 @@ object DataModule1: TDataModule1
   Width = 853
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorHome = 
-      'C:\Users\User\Desktop\Projeto final - Museu\Otilia\Win32\Debug\d' +
-      'll'
+      'C:\Users\LTI\Downloads\Projeto final - Museu2\Otilia\Win32\Debug' +
+      '\dll'
     Left = 32
     Top = 16
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
       'User_Name=postgres'
-      'Password=nene7852'
+      'Password=postgres'
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
@@ -128,10 +128,9 @@ object DataModule1: TDataModule1
       FieldName = 'id_status'
       Origin = 'id_status'
     end
-    object FDQObjetotx_tipo: TWideStringField
-      FieldName = 'tx_tipo'
-      Origin = 'tx_tipo'
-      Size = 30
+    object FDQObjetoid_modelo: TIntegerField
+      FieldName = 'id_modelo'
+      Origin = 'id_modelo'
     end
   end
   object DSObjeto: TDataSource
@@ -263,5 +262,108 @@ object DataModule1: TDataModule1
   object DSStatus: TDataSource
     Left = 296
     Top = 192
+  end
+  object FDQModelo: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from tb_modelo')
+    Left = 216
+    Top = 264
+    object FDQModeloid_modelo: TIntegerField
+      FieldName = 'id_modelo'
+      Origin = 'id_modelo'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object FDQModelotx_modelo: TWideStringField
+      FieldName = 'tx_modelo'
+      Origin = 'tx_modelo'
+      Size = 30
+    end
+  end
+  object DSModelo: TDataSource
+    DataSet = FDQModelo
+    Left = 296
+    Top = 264
+  end
+  object DSRelatorioFuncionario: TDataSource
+    Left = 648
+    Top = 136
+  end
+  object FDRelatorioFuncionario: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from tb_pessoa'
+      'inner join tb_usuario on id_pessoa = id_usuario'
+      'inner join tb_estado on id_cidade = id_estado'
+      '')
+    Left = 528
+    Top = 136
+    object FDRelatorioFuncionariotx_nome: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'tx_nome'
+      Origin = 'tx_nome'
+      Size = 100
+    end
+    object FDRelatorioFuncionarionr_idade: TIntegerField
+      DisplayLabel = 'Idade'
+      FieldName = 'nr_idade'
+      Origin = 'nr_idade'
+    end
+    object FDRelatorioFuncionariotx_cargo: TWideStringField
+      DisplayLabel = 'Cargo'
+      FieldName = 'tx_cargo'
+      Origin = 'tx_cargo'
+      Size = 50
+    end
+    object FDRelatorioFuncionariotx_telefone: TWideStringField
+      DisplayLabel = 'Telefone'
+      FieldName = 'tx_telefone'
+      Origin = 'tx_telefone'
+    end
+    object FDRelatorioFuncionariotx_login: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Login'
+      FieldName = 'tx_login'
+      Origin = 'tx_login'
+      Size = 30
+    end
+    object FDRelatorioFuncionariotx_email: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'FlagSuperUser'
+      FieldName = 'tx_email'
+      Origin = 'tx_email'
+      Size = 100
+    end
+    object FDRelatorioFuncionariofl_superuser: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'fl_superuser'
+      Origin = 'fl_superuser'
+    end
+    object FDRelatorioFuncionariotx_estado: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tx_estado'
+      Origin = 'tx_estado'
+      Size = 30
+    end
+    object FDRelatorioFuncionariotx_sigla: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Silgla do estado'
+      FieldName = 'tx_sigla'
+      Origin = 'tx_sigla'
+      Size = 2
+    end
+  end
+  object FDRelatorioObjeto: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from tb_objeto')
+    Left = 528
+    Top = 248
+  end
+  object DSRelatorioObjeto: TDataSource
+    Left = 632
+    Top = 248
   end
 end

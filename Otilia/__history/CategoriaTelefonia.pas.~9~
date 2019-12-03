@@ -1,0 +1,60 @@
+unit CategoriaTelefonia;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.StdCtrls, Vcl.Buttons, Data.DB, System.Rtti, System.Bindings.Outputs,
+  Vcl.Bind.Editors, Data.Bind.EngExt, Vcl.Bind.DBEngExt, Data.Bind.Components,
+  Data.Bind.DBScope, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmTelefonia = class(TForm)
+    Image1: TImage;
+    groupBoxPesquisa: TGroupBox;
+    edtPesquisaBanco: TEdit;
+    Image2: TImage;
+    SpeedButton1: TSpeedButton;
+    ImagemCima: TImage;
+    ImagemBaixo: TImage;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    GridCima: TDBGrid;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTelefonia: TfrmTelefonia;
+
+implementation
+
+{$R *.dfm}
+
+uses Modulo;
+
+procedure TfrmTelefonia.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+   DataModule1.FDQObjeto.Active:=false;
+   DataModule1.FDConnection1.Connected:=false;
+end;
+
+procedure TfrmTelefonia.FormShow(Sender: TObject);
+begin
+    DataModule1.FDQObjeto.Active:=true;
+    DataModule1.FDConnection1.Connected:=true;
+
+
+    DataModule1.FDQObjeto.SQL.Clear;
+    DataModule1.FDQUsuario.SQL.Add('Select * from tb_objeto where id_categoria = 2');
+
+end;
+
+end.

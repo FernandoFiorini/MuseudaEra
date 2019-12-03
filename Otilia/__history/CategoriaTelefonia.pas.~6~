@@ -1,0 +1,44 @@
+unit CategoriaTelefonia;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.StdCtrls, Vcl.Buttons, Data.DB, System.Rtti, System.Bindings.Outputs,
+  Vcl.Bind.Editors, Data.Bind.EngExt, Vcl.Bind.DBEngExt, Data.Bind.Components,
+  Data.Bind.DBScope, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmTelefonia = class(TForm)
+    Image1: TImage;
+    groupBoxPesquisa: TGroupBox;
+    edtPesquisaBanco: TEdit;
+    Image2: TImage;
+    SpeedButton1: TSpeedButton;
+    ImagemCima: TImage;
+    ImagemBaixo: TImage;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    GridCima: TDBGrid;
+    GridBaixo: TDBGrid;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    LinkControlToField1: TLinkControlToField;
+    LinkControlToField2: TLinkControlToField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTelefonia: TfrmTelefonia;
+
+implementation
+
+{$R *.dfm}
+
+uses Modulo;
+
+end.

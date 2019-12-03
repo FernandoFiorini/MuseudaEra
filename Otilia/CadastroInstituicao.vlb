@@ -1,95 +1,107 @@
 ﻿[edtTelefone]
-Coordinates=20,350,72,51
+Coordinates=20,350,83,58
 
 [edtCnpj]
-Coordinates=30,260,52,51
+Coordinates=30,260,59,58
 
 [CNPJ]
-Coordinates=220,10,41,51
+Coordinates=220,10,49,58
 
 [Image1]
-Coordinates=271,10,49,51
+Coordinates=271,10,57,58
 
 [CadastroInstituicao]
-Coordinates=330,20,110,51
+Coordinates=330,20,125,58
 
 [NomeInstituicao]
-Coordinates=10,71,94,51
+Coordinates=10,71,107,58
 
 [edtNomeInstituicao]
-Coordinates=10,190,109,51
+Coordinates=120,170,125,58
 
 [Telefone]
-Coordinates=10,10,56,51
+Coordinates=10,10,65,58
 Visible=True
 
 [btnVoltar]
-Coordinates=10,132,59,33
+Coordinates=10,132,66,36
 
 [btnCadastrar]
-Coordinates=233,71,78,33
+Coordinates=233,71,89,36
 
 []
 Coordinates=349,80,82,33
 
 [DataModule1.DSObjeto]
-Coordinates=399,391,128,33
+Coordinates=399,391,150,36
 
 [DataModule1.FDQColecao]
-Coordinates=562,89,143,105
+Coordinates=562,89,168,124
 
 [DataModule1.FDQManutencao]
-Coordinates=830,320,163,105
+Coordinates=830,320,192,124
 
 [DataModule1.FDQMidia]
 Coordinates=363,143,129,87
 
 [DataModule1.FDQCadastro]
-Coordinates=700,440,147,123
+Coordinates=700,440,173,146
 
 [DataModule1.DSCadastro]
-Coordinates=363,1,140,33
+Coordinates=363,1,164,36
 
 [DataModule1.DSManutencao]
-Coordinates=565,407,155,33
+Coordinates=565,407,183,36
 
 [DataModule1.FDQCategoria]
-Coordinates=211,365,150,87
+Coordinates=211,365,177,102
 
 [DataModule1.DSInstituicao]
-Coordinates=565,531,147,33
+Coordinates=565,531,171,36
 
 [DataModule1.FDQInstituicao]
-Coordinates=150,200,154,33
+Coordinates=150,200,180,36
 Visible=False
 
 [DataModule1.FDQObjeto]
-Coordinates=950,160,135,141
+Coordinates=950,160,159,256
 
 [DataModule1.DSUsuario]
-Coordinates=72,365,133,33
+Coordinates=72,365,157,36
 
 [DataModule1.DSSuperUsuario]
-Coordinates=562,1,163,33
+Coordinates=562,1,191,36
 
 [DataModule1.DSCategoria]
-Coordinates=182,80,143,33
+Coordinates=182,80,168,36
 
 [DataModule1.DSColecao]
-Coordinates=43,124,135,33
+Coordinates=43,124,159,36
 
 [DataModule1.DSMidia]
 Coordinates=562,213,121,33
 
 [DataModule1.FDQUsuario]
-Coordinates=562,319,141,69
+Coordinates=562,319,166,80
 
 [DataModule1.FDQSuperUsuario]
-Coordinates=763,1,170,69
+Coordinates=763,1,200,80
 
 [BindSourceDB1]
-Coordinates=150,200,138,141
+Coordinates=390,190,165,168
 
 [BindingsList1]
-Coordinates=349,80,82,33
+Coordinates=349,80,91,36
+
+[DataModule1.FDQModelo]
+Coordinates=0,0,163,102
+
+[DataModule1.DSStatus]
+Coordinates=369,286,149,36
+
+[DataModule1.FDQStatus]
+Coordinates=120,700,158,102
+
+[DataModule1.DSModelo]
+Coordinates=388,166,154,36
 

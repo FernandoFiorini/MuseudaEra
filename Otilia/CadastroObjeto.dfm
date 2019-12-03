@@ -4368,7 +4368,7 @@ object frmCadastroObjeto: TfrmCadastroObjeto
   object Link: TLabel
     Left = 216
     Top = 336
-    Width = 25
+    Width = 3
     Height = 13
   end
   object btnCancelar: TSpeedButton
@@ -9759,12 +9759,20 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     Height = 13
     Caption = 'Foto Selecionada'
   end
-  object Tipo: TLabel
+  object Modelo: TLabel
     Left = 60
     Top = 291
-    Width = 20
+    Width = 34
     Height = 13
-    Caption = 'Tipo'
+    Caption = 'Modelo'
+  end
+  object btnModelo: TSpeedButton
+    Left = 280
+    Top = 288
+    Width = 65
+    Height = 22
+    Caption = 'Novo'
+    OnClick = btnModeloClick
   end
   object edtNome: TEdit
     Left = 120
@@ -9803,14 +9811,22 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     Height = 21
     TabOrder = 4
   end
-  object edtTipo: TEdit
+  object cmbModelo: TComboBox
     Left = 120
     Top = 288
-    Width = 121
+    Width = 145
     Height = 21
     TabOrder = 5
   end
   object OpenPictureDialog1: TOpenPictureDialog
+    Filter = 
+      'All (*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.ico;*.emf;*.wmf;*.tif;*.ti' +
+      'ff)|*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.ico;*.emf;*.wmf;*.tif;*.tif' +
+      'f|GIF Image (*.gif)|*.gif|Portable Network Graphics (*.png)|*.pn' +
+      'g|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*.jpeg|' +
+      'Bitmaps (*.bmp)|*.bmp|Icons (*.ico)|*.ico|Enhanced Metafiles (*.' +
+      'emf)|*.emf|Metafiles (*.wmf)|*.wmf|TIFF Images (*.tif)|*.tif|TIF' +
+      'F Images (*.tiff)|*.tiff'
     Left = 632
     Top = 16
   end
@@ -9894,12 +9910,19 @@ object frmCadastroObjeto: TfrmCadastroObjeto
       FillHeaderExpressions = <>
       FillBreakGroups = <>
     end
-    object LinkControlToField3: TLinkControlToField
+    object LinkFillControlToField5: TLinkFillControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
-      FieldName = 'tx_tipo'
-      Control = edtTipo
+      FieldName = 'id_modelo'
+      Control = cmbModelo
       Track = True
+      FillDataSource = BindSourceDB6
+      FillValueFieldName = 'id_modelo'
+      FillDisplayFieldName = 'tx_modelo'
+      AutoFill = True
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
     end
   end
   object BindSourceDB2: TBindSourceDB
@@ -9924,5 +9947,11 @@ object frmCadastroObjeto: TfrmCadastroObjeto
     ScopeMappings = <>
     Left = 272
     Top = 8
+  end
+  object BindSourceDB6: TBindSourceDB
+    DataSet = DataModule1.FDQModelo
+    ScopeMappings = <>
+    Left = 392
+    Top = 16
   end
 end

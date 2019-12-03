@@ -13,7 +13,9 @@ uses
   CategoriaAudioVideo in 'CategoriaAudioVideo.pas' {frmAudioVideo},
   Modulo in 'Modulo.pas' {DataModule1: TDataModule},
   Relatorios in 'Relatorios.pas' {frmRelatorios},
-  CadastroInstituicao in 'CadastroInstituicao.pas' {frmCadastroInstituicao};
+  CadastroInstituicao in 'CadastroInstituicao.pas' {frmCadastroInstituicao},
+  CadastroColecao in 'CadastroColecao.pas' {frmCadastroColecao},
+  CadastroModelo in 'CadastroModelo.pas' {frmCadastroModelo};
 
 {$R *.res}
 
@@ -21,8 +23,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmLogin, frmLogin);
-  Application.CreateForm(TfrmCadastroObjeto, frmCadastroObjeto);
   Application.CreateForm(TfrmTelefonia, frmTelefonia);
+  Application.CreateForm(TfrmCadastroObjeto, frmCadastroObjeto);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmCadastro, frmCadastro);
   Application.CreateForm(TfrmSobre, frmSobre);
@@ -32,5 +34,7 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfrmRelatorios, frmRelatorios);
   Application.CreateForm(TfrmCadastroInstituicao, frmCadastroInstituicao);
+  Application.CreateForm(TfrmCadastroColecao, frmCadastroColecao);
+  Application.CreateForm(TfrmCadastroModelo, frmCadastroModelo);
   Application.Run;
 end.

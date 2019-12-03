@@ -43,14 +43,17 @@ type
     BindSourceDB4: TBindSourceDB;
     LinkFillControlToField4: TLinkFillControlToField;
     BindSourceDB5: TBindSourceDB;
-    Tipo: TLabel;
-    edtTipo: TEdit;
-    LinkControlToField3: TLinkControlToField;
+    Modelo: TLabel;
+    BindSourceDB6: TBindSourceDB;
+    btnModelo: TSpeedButton;
+    cmbModelo: TComboBox;
+    LinkFillControlToField5: TLinkFillControlToField;
     procedure btnAdicionarFotoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnCadastradarClick(Sender: TObject);
     procedure btnNovoInstituicaoClick(Sender: TObject);
+    procedure btnModeloClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,7 +70,7 @@ implementation
 
 {$R *.dfm}
 
-uses FileCtrl, Modulo, CadastroInstituicao,Jpeg;
+uses FileCtrl, Modulo, CadastroInstituicao,Jpeg, CadastroModelo;
 
 procedure TfrmCadastroObjeto.btnAdicionarFotoClick(Sender: TObject);
 begin
@@ -83,7 +86,7 @@ end;
 procedure TfrmCadastroObjeto.btnCadastradarClick(Sender: TObject);
 begin
 
-  if((edtNome.Text = '')or(cmbStatus.Text = '')or(Instituicao.Caption = '')or(cmbInstituicao.Text = '')or(cmbCategoria.Text = '')or(edtTipo.Text = ''))then
+  if((edtNome.Text = '')or(cmbStatus.Text = '')or(Instituicao.Caption = '')or(cmbInstituicao.Text = '')or(cmbCategoria.Text = '')or(cmbModelo.Text = ''))then
   begin
     ShowMessage('Informe todos os dados');
     edtNome.SetFocus;
@@ -97,10 +100,16 @@ begin
      cmbCategoria.Clear;
      cmbStatus.Clear;
      cmbInstituicao.Clear;
-     edtTipo.Clear;
+     cmbModelo.Clear;
   end;
 end;
 
+
+procedure TfrmCadastroObjeto.btnModeloClick(Sender: TObject);
+begin
+  frmCadastroModelo:= TfrmCadastroModelo.Create(self);
+  frmCadastroModelo.ShowModal;
+end;
 
 procedure TfrmCadastroObjeto.btnNovoInstituicaoClick(Sender: TObject);
 begin
@@ -114,8 +123,10 @@ procedure TfrmCadastroObjeto.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   DataModule1.FDQObjeto.Active:=False;
+
   DataModule1.FDQInstituicao.Active:=False;
   DataModule1.FDQCategoria.Active:=False;
+  DataModule1.FDQModelo.Active:=False;
   DataModule1.FDQStatus.Active:=false;
 
   DataModule1.FDConnection1.Connected:=False;
@@ -124,6 +135,7 @@ end;
 procedure TfrmCadastroObjeto.FormShow(Sender: TObject);
 begin
   DataModule1.FDQObjeto.Active:=True;
+  DataModule1.FDQModelo.Active:=True;
   DataModule1.FDQInstituicao.Active:=True;
   DataModule1.FDQCategoria.Active:=True;
   DataModule1.FDQStatus.Active:=True;
@@ -131,6 +143,7 @@ begin
 
   DataModule1.FDConnection1.Connected:=True;
   DataModule1.FDQObjeto.Insert;
+  DataModule1.FDQModelo.Insert;
 end;
 
 

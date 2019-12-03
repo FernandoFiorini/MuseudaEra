@@ -73,7 +73,6 @@ begin
           showmessage('Login efetuado');
           frmPrincipal := TFrmPrincipal.Create(self);
           frmPrincipal.ShowModal;
-          frmLogin.Close;
         end
         else
         begin

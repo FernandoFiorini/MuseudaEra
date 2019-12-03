@@ -37,7 +37,7 @@ COMMENT ON COLUMN tb_cidade.tx_nomecid IS 'Nome da cidade.';
 CREATE TABLE tb_colecao (
   id_colecao SERIAL NOT NULL, 
   tx_nomecol varchar(30), 
-  dt_colecao date, 
+  dt_colecao date default CURRENT_DATE, 
   PRIMARY KEY (id_colecao));
 -----------------------------------------------------------------------------------------------------------------------
 COMMENT ON TABLE tb_colecao IS 'Tabela responsavel pela criacao da coleção de determinados objetos, por exemplo linha nintendo.';

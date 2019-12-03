@@ -1,0 +1,11 @@
+
+-----------------------------------Relatórios-------------------------------
+--1)
+select tx_nomeobj,dt_criacao from tb_objeto where dt_criacao < '2019-01-01' or dt_criacao > '2020-01-01'
+
+
+--2) select id_pessoa,tx_nome from tb_pessoa where nr_idade < 25 and tx_sexo = 'M' order by nr_idade asc
+
+--3) select id_modelo,tx_modelo,qt_objetosmod from tb_modelo where qt_objetosmod< 15 order by qt_objetosmod desc
+
+--4)select tx_nomecol, dt_iniccolecao,dt_fimcolecao,qt_objetoscol from tb_colecao where dt_iniccolecao >= '2019-08-01' and dt_iniccolecao <= '2019-11-01' and qt_objetoscol > 15 order by dt_iniccolecao

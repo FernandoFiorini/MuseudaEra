@@ -43,7 +43,7 @@ implementation
 
 {$R *.dfm}
 
-uses Modulo;
+uses Modulo, CadastroModelo;
 
 procedure TfrmCadastroInstituicao.btnCadastrarClick(Sender: TObject);
 begin
@@ -53,9 +53,10 @@ begin
     end
     else
     begin
-      DataModule1.FDQInstituicao.Post;
+     DataModule1.FDQInstituicao.Post;
      DataModule1.FDQInstituicao.Refresh;
      DataModule1.FDQObjeto.Refresh;
+     DataModule1.FDQModelo.Refresh;
      edtNomeInstituicao.Clear;
      edtCnpj.Clear;
      edtTelefone.Clear;
@@ -87,6 +88,7 @@ begin
   DataModule1.FDQInstituicao.Active:=True;
   DataModule1.FDConnection1.Connected:=True;
   DataModule1.FDQInstituicao.Insert;
+  DataModule1.FDQModelo.Insert;
 end;
 
 end.

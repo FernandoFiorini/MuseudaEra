@@ -45,6 +45,8 @@ type
     LinkPropertyToFieldCaption: TLinkPropertyToField;
     BindSourceDB3: TBindSourceDB;
     LinkPropertyToFieldCaption2: TLinkPropertyToField;
+    Colecao: TMenuItem;
+    Logout: TMenuItem;
     procedure SobreClick(Sender: TObject);
     procedure Usurio1Click(Sender: TObject);
     procedure ObjetoClick(Sender: TObject);
@@ -59,6 +61,8 @@ type
     procedure RelatoriosClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure LogoutClick(Sender: TObject);
+    procedure ColecaoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -75,7 +79,7 @@ implementation
 
 uses Sobre, Cadastro, CadastroObjeto, CategoriaComputacao, CategoriaAudioVideo,
   CategoriaGames, CategoriaTelefonia, Relatorios, Modulo,FireDAC.Stan.Param,
-  Login;
+  Login, CadastroColecao;
 
 procedure TfrmPrincipal.btnAudioVideoClick(Sender: TObject);
 begin
@@ -121,6 +125,12 @@ begin
 end;
 
 
+procedure TfrmPrincipal.ColecaoClick(Sender: TObject);
+begin
+  frmCadastroColecao := TfrmCadastroColecao.Create(self);
+  frmCadastroColecao.ShowModal;
+end;
+
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
     DataModule1.FDQSuperUsuario.Active:=False;
@@ -144,6 +154,11 @@ begin
     Manutencao.Visible := false;
     Relatorios.Visible := false;
   end;
+end;
+
+procedure TfrmPrincipal.LogoutClick(Sender: TObject);
+begin
+  frmPrincipal.close;
 end;
 
 procedure TfrmPrincipal.menuAudioVideoClick(Sender: TObject);

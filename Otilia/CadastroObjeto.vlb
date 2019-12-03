@@ -2,7 +2,7 @@
 Coordinates=323,143,49,51
 
 [edtNome]
-Coordinates=360,290,58,51
+Coordinates=320,280,58,51
 
 [Categoria]
 Coordinates=457,143,61,51
@@ -24,7 +24,7 @@ Coordinates=420,204,90,33
 Visible=True
 
 [cmbCategoria]
-Coordinates=230,310,84,105
+Coordinates=270,390,84,105
 
 [Instituicao]
 Coordinates=382,143,65,51
@@ -36,7 +36,7 @@ Coordinates=368,204,42,51
 Coordinates=272,143,41,51
 
 [cmbInstituicao]
-Coordinates=450,510,87,105
+Coordinates=300,540,87,105
 Visible=True
 
 [btnNovoInstituicao]
@@ -70,7 +70,7 @@ Coordinates=300,318,128,33
 Coordinates=358,10,141,69
 
 []
-Coordinates=660,330,51,51
+Coordinates=710,310,65,51
 Visible=True
 
 [DataModule1.FDQManutencao]
@@ -117,20 +117,20 @@ Visible=True
 Coordinates=150,90,96,51
 
 [DataModule1.]
-Coordinates=910,1,117,33
+Coordinates=180,1,131,33
 Visible=False
 
 [BindSourceDB1]
-Coordinates=460,280,122,231
+Coordinates=460,250,122,231
 
 [BindingsList1]
 Coordinates=0,0,82,33
 
 [BindSourceDB2]
-Coordinates=550,570,138,141
+Coordinates=820,400,138,141
 
 [BindSourceDB3]
-Coordinates=210,520,136,105
+Coordinates=30,490,136,105
 Visible=True
 
 [frmCadastroInstituicao.BindSourceDB1]
@@ -152,12 +152,30 @@ Coordinates=970,420,121,105
 Visible=True
 
 [BindSourceDB5]
-Coordinates=800,260,92,51
+Coordinates=1290,-50,92,87
 Visible=True
 
-[Tipo]
-Coordinates=560,120,41,51
+[Modelo]
+Coordinates=660,250,50,51
 
-[edtTipo]
-Coordinates=630,350,51,51
+[DataModule1.FDQModelo]
+Coordinates=740,300,139,33
+Visible=False
+
+[DataModule1.DSModelo]
+Coordinates=180,1,131,33
+
+[BindSourceDB6]
+Coordinates=790,230,125,105
+Visible=True
+
+[cmbModelo]
+Coordinates=660,330,84,105
+Visible=True
+
+[frmCadastroModelo.BindSourceDB1]
+Coordinates=1002,544,192,87
+
+[btnModelo]
+Coordinates=101,1,66,33
 

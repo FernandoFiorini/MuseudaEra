@@ -12289,30 +12289,6 @@ object frmPrincipal: TfrmPrincipal
       6082}
     ExplicitLeft = -24
   end
-  object btnTelefonia: TSpeedButton
-    Left = 808
-    Top = 208
-    Width = 220
-    Height = 199
-    Flat = True
-    OnClick = btnTelefoniaClick
-  end
-  object btnGames: TSpeedButton
-    Left = 373
-    Top = 469
-    Width = 220
-    Height = 204
-    Flat = True
-    OnClick = btnGamesClick
-  end
-  object btnAudioVideo: TSpeedButton
-    Left = 808
-    Top = 469
-    Width = 220
-    Height = 196
-    Flat = True
-    OnClick = btnAudioVideoClick
-  end
   object ImagemGames: TImage
     Left = 416
     Top = 504
@@ -12669,14 +12645,6 @@ object frmPrincipal: TfrmPrincipal
       78EEFC47A73FACD97ACE1F614F56D1E5FE64D47A2245211440CF51003D4701F4
       1C05D0731440CF51003DE75F5CFCB69096F7971D0000000049454E44AE426082}
   end
-  object btnComputacao: TSpeedButton
-    Left = 373
-    Top = 214
-    Width = 220
-    Height = 193
-    Flat = True
-    OnClick = btnComputacaoClick
-  end
   object Computacao: TLabel
     Left = 435
     Top = 168
@@ -12693,8 +12661,8 @@ object frmPrincipal: TfrmPrincipal
   object FlagSuperusuario: TLabel
     Left = 136
     Top = 40
-    Width = 189
-    Height = 41
+    Width = 3
+    Height = 13
     Visible = False
   end
   object User: TLabel
@@ -12704,6 +12672,38 @@ object frmPrincipal: TfrmPrincipal
     Height = 13
     Caption = 'User'
     Visible = False
+  end
+  object btnAudioVideo: TSpeedButton
+    Left = 808
+    Top = 469
+    Width = 220
+    Height = 196
+    Flat = True
+    OnClick = btnAudioVideoClick
+  end
+  object btnComputacao: TSpeedButton
+    Left = 373
+    Top = 214
+    Width = 220
+    Height = 193
+    Flat = True
+    OnClick = btnComputacaoClick
+  end
+  object btnGames: TSpeedButton
+    Left = 373
+    Top = 469
+    Width = 220
+    Height = 204
+    Flat = True
+    OnClick = btnGamesClick
+  end
+  object btnTelefonia: TSpeedButton
+    Left = 808
+    Top = 208
+    Width = 220
+    Height = 199
+    Flat = True
+    OnClick = btnTelefoniaClick
   end
   object MainMenu1: TMainMenu
     Left = 1040
@@ -12717,6 +12717,10 @@ object frmPrincipal: TfrmPrincipal
       object Usurio1: TMenuItem
         Caption = 'Usu'#225'rio'
         OnClick = Usurio1Click
+      end
+      object Colecao: TMenuItem
+        Caption = 'Cole'#231#227'o'
+        OnClick = ColecaoClick
       end
     end
     object Busca: TMenuItem
@@ -12748,6 +12752,10 @@ object frmPrincipal: TfrmPrincipal
     object Sobre: TMenuItem
       Caption = 'Sobre'
       OnClick = SobreClick
+    end
+    object Logout: TMenuItem
+      Caption = 'Logout'
+      OnClick = LogoutClick
     end
   end
   object BindSourceDB1: TBindSourceDB

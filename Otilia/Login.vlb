@@ -63,7 +63,7 @@ Visible=True
 Coordinates=514,296,156,123
 
 [DataModule1.FDQSuperUsuario]
-Coordinates=1110,200,170,33
+Coordinates=1110,200,170,69
 Visible=True
 
 [DataModule1.DSSuperUsuario]
@@ -117,4 +117,9 @@ Coordinates=842,562,155,87
 [DataModule1.]
 Visible=False
 Coordinates=0,0,162,33
+
+[Module Settings]
+ModelLayerNames=
+ActiveLayerNames=
+EditingLayerName=
 
